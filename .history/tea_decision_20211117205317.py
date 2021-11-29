@@ -1,7 +1,9 @@
 from flask.scaffold import F
 from owlready2 import *
 
-onto = get_ontology("tea.owl").load()  # Change the path of the ontology
+onto = get_ontology(
+    "/Users/helene.deribaupierre/Desktop/test_ontology/tea.owl"
+).load()  # Change the path of the ontology
 
 from flask import Flask, request
 

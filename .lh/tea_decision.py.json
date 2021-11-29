@@ -1,0 +1,18 @@
+{
+    "sourceFile": "tea_decision.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1638196482596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1638196482596,
+            "name": "Commit-0",
+            "content": "from flask.scaffold import F\nfrom owlready2 import *\n\nonto = get_ontology(\"tea.owl\").load()  # Change the path of the ontology\n\nfrom flask import Flask, request\n\napp = Flask(__name__)\n\n\n@app.route(\"/\")\ndef page_entry():\n    html = \"\"\"<html><body>\n<h3>Entrez les caractéristiques du Thé:</h3>\n<form action=\"/result\">\n    Method :<br/>\n    <input type=\"radio\" name=\"method\" value=\"Oxidised\"/> Oxi<br/>\n    <input type=\"radio\" name=\"method\" value=\"Dried\"/> Dry<br/>\n    <br/>\n     <input type=\"radio\" name=\"flavour\" value=\"Spicy\"/>Spicy<br/>\n    <input type=\"radio\" name=\"flavour\" value=\"Bitter\"/>Bitter<br/>\n    <br/>\n    \n      <br/>\n     <input type=\"checkbox\" name=\"hasI\" value=\"Jasmin\"/> Jasmin<br/>\n     <input type=\"checkbox\" name=\"hasI\" value=\"Bergamote\"/> Bergamote<br/>\n    <br/>\n   \n    <input type=\"submit\"/>\n</form>  \n</body></html>\"\"\"\n    return html\n\n\nONTO_ID = 0\n\n\n@app.route(\"/result\")\ndef page_result():\n    global ONTO_ID\n    ONTO_ID = ONTO_ID + 1\n\n    onto_tmp = get_ontology(\"http://tmp.org/onto_%s.owl#\" % ONTO_ID)\n\n    method = request.args.get(\"method\", \"\")\n    flavour = request.args.get(\"flavour\", \"\")\n    ingredients = request.args.getlist(\"hasI\")\n    print(method, flavour, onto.Tea, ingredients)\n\n    with onto_tmp:\n        new_tea = onto.Tea()\n\n        if method:\n            method = onto[method]\n            new_tea.has_method = method()\n\n        if flavour:\n            flavour = onto[flavour]\n            new_tea.has_taste = flavour()\n\n        for ingredient in ingredients:\n            ingredi = onto[ingredient]\n            new_tea.has_ingredient.append(ingredi())\n\n        close_world(new_tea)\n\n        sync_reasoner([onto, onto_tmp])\n\n    noms_des_classes = []\n    for classe in new_tea.is_a:\n        print(classe)\n        if isinstance(classe, ThingClass):\n            noms_des_classes.append(classe.name)\n    html = \"\"\"<html><body><h4>Result :%s Tea</h4></body></html>\"\"\" % noms_des_classes\n    onto_tmp.destroy()\n    return html\n\n\nimport werkzeug.serving\n\nwerkzeug.serving.run_simple(\"localhost\", 5000, app)\n"
+        }
+    ]
+}
