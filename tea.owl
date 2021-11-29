@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.deribaupierre.org/tea.owl#"
+     xml:base="http://www.deribaupierre.org/tea.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.deribaupierre.org/tea.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#goes_well_with -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#goes_well_with"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#has_ingredient -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#has_ingredient">
+        <owl:inverseOf rdf:resource="http://www.deribaupierre.org/tea.owl#is_ingredient_of"/>
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#has_method -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#has_method">
+        <owl:inverseOf rdf:resource="http://www.deribaupierre.org/tea.owl#is_method_of"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#has_taste -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#has_taste">
+        <owl:inverseOf rdf:resource="http://www.deribaupierre.org/tea.owl#is_taste_of"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Taste"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#is_ingredient_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#is_ingredient_of">
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#is_method_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#is_method_of">
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Method"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#is_taste_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.deribaupierre.org/tea.owl#is_taste_of">
+        <rdfs:domain rdf:resource="http://www.deribaupierre.org/tea.owl#Taste"/>
+        <rdfs:range rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Bergamote -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Bergamote">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Bitter -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Bitter">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Taste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Black -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Black">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Oxidised"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Oxidised"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+        <owl:disjointWith rdf:resource="http://www.deribaupierre.org/tea.owl#Green"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Cheese -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Cheese"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Dried -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Dried">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#EarlGrey -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#EarlGrey">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_ingredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Bergamote"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Oxidised"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_taste"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Bitter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Oxidised"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_taste"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Bitter"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Black"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Green -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Green">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Dried"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Dried"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Tea"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Gruyere -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Gruyere">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Cheese"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Ingredient -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Jasmin -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Jasmin">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#JasminTea -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#JasminTea">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_ingredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Jasmin"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Dried"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_taste"/>
+                        <owl:someValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Bitter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_method"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Dried"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.deribaupierre.org/tea.owl#has_taste"/>
+                        <owl:allValuesFrom rdf:resource="http://www.deribaupierre.org/tea.owl#Bitter"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Green"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Method -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Method"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Oxidised -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Oxidised">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Spicy -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Spicy">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Taste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Taste -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Taste"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#Tea -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+    
+
+
+    <!-- http://www.deribaupierre.org/tea.owl#TommeVaudoise -->
+
+    <owl:Class rdf:about="http://www.deribaupierre.org/tea.owl#TommeVaudoise">
+        <rdfs:subClassOf rdf:resource="http://www.deribaupierre.org/tea.owl#Cheese"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Bergamote"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Bitter"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Dried"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Jasmin"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Oxidised"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Spicy"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Cheese"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Ingredient"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Method"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Taste"/>
+            <rdf:Description rdf:about="http://www.deribaupierre.org/tea.owl#Tea"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
